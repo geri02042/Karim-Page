@@ -3,171 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIM | Creative Universe</title>
+    <title>KARIM | Visual Archive</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:italic,wght@600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --acid-green: #ccff00;
-            --hot-pink: #ff00ff;
-            --deep-purple: #6600ff;
-        }
-        
         body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Unbounded', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fcfcf9; /* Off-white yang hangat */
+            color: #2d2d2d;
             overflow-x: hidden;
         }
-
-        /* Animated Fluid Background */
-        .bg-gradient {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, #000, #1a1a1a, #001a33);
-            z-index: -1;
-        }
-
-        .blob {
-            position: absolute;
-            width: 500px; height: 500px;
-            background: var(--deep-purple);
-            filter: blur(100px);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: move 20s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(100%, 50%); }
-        }
-
-        .syne { font-family: 'Syne', sans-serif; }
-
-        /* Marquee Animation */
-        .marquee {
-            white-space: nowrap;
+        .serif { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Aksen Warna */
+        .text-accent { color: #6b705c; } /* Sage Green */
+        .bg-accent { background-color: #cb997e; } /* Muted Terracotta */
+        
+        .img-container {
+            background-color: #f0f0f0; /* Fallback color jika gambar loading */
             overflow: hidden;
-            background: var(--acid-green);
-            color: #000;
-            padding: 10px 0;
-            font-weight: bold;
-            text-transform: uppercase;
+            position: relative;
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
+        .img-container img {
+            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .img-container:hover img {
+            transform: scale(1.08);
         }
 
-        .card-pop:hover {
-            transform: scale(1.02) rotate(1deg);
-            box-shadow: 10px 10px 0px var(--hot-pink);
-        }
+        /* Border halus dengan warna */
+        .border-subtle { border-color: #e9ecef; }
     </style>
 </head>
 <body>
 
-    <div class="bg-gradient">
-        <div class="blob"></div>
-    </div>
-
-    <!-- Header -->
-    <nav class="p-6 flex justify-between items-center fixed w-full z-50 mix-blend-difference">
-        <div class="text-2xl font-black italic tracking-tighter">KARIM.SYS</div>
-        <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <a href="#" class="hover:text-[--acid-green]">Works</a>
-            <a href="#" class="hover:text-[--acid-green]">About</a>
-            <a href="https://instagram.com/namaku.karim" class="bg-white text-black px-4 py-1 rounded-full">Follow</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center bg-[#fcfcf9]/80 backdrop-blur-sm border-b border-gray-100">
+        <div class="text-xl font-bold tracking-tighter uppercase flex items-center gap-2">
+            <span class="w-2 h-2 bg-accent rounded-full"></span> Karim
+        </div>
+        <div class="space-x-10 text-[10px] uppercase tracking-[0.2em] font-bold hidden md:flex">
+            <a href="#work" class="hover:text-accent transition">Portfolio</a>
+            <a href="#about" class="hover:text-accent transition">About</a>
+            <a href="https://instagram.com/namaku.karim" target="_blank" class="px-4 py-2 border border-gray-200 rounded-full hover:bg-gray-50 transition">Instagram</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-6xl md:text-9xl syne font-black leading-none mb-4 tracking-tighter uppercase">
-            VISUAL <br> <span class="text-[--acid-green]">ENERGY</span>
-        </h1>
-        <p class="text-sm md:text-base max-w-lg opacity-80 mb-8 font-light">
-            Crafting vibrant digital experiences and high-fidelity visuals. Where color meets chaos.
-        </p>
-        <div class="flex gap-4">
-            <div class="w-12 h-12 rounded-full border border-white flex items-center justify-center animate-bounce">
-                ↓
+    <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20">
+        <div data-aos="fade-up" data-aos-duration="1200">
+            <span class="text-accent text-xs font-bold uppercase tracking-widest mb-4 block">Visual Designer & Artist</span>
+            <h1 class="text-[11vw] md:text-[7vw] leading-[0.95] tracking-tighter mb-10 font-semibold">
+                Capturing <br> <span class="serif italic text-accent">Silent Stories.</span>
+            </h1>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="h-[1px] w-full md:w-1/3 bg-gray-200"></div>
+                <p class="max-w-sm text-gray-500 text-sm leading-relaxed text-center md:text-left">
+                    Merging minimalist aesthetics with deep visual narratives. Creating timeless digital art from the heart of Indonesia.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Moving Text Divider -->
-    <div class="marquee border-y-2 border-black">
-        <div class="marquee-content text-2xl">
-            DIGITAL ART • MOTION GRAPHICS • UI/UX • BRANDING • RETRO-FUTURISM • ART ARCHIVE • NOSTALGIA • DIGITAL ART • MOTION GRAPHICS • UI/UX • BRANDING • RETRO-FUTURISM • 
-        </div>
-    </div>
-
-    <!-- Colorful Portfolio Grid -->
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Project Section -->
+    <section id="work" class="px-6 py-20 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             
-            <!-- Project 1 -->
-            <div class="card-pop group relative bg-zinc-900 border-2 border-white overflow-hidden transition-all duration-300">
-                <div class="aspect-video overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <!-- Project 1 (Stable Image Link) -->
+            <div class="md:col-span-8" data-aos="fade-up">
+                <div class="img-container aspect-[16/9] rounded-sm">
+                    <img src="https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 1">
                 </div>
-                <div class="p-6 bg-white text-black">
-                    <span class="text-xs font-bold uppercase text-purple-600">Illustration</span>
-                    <h3 class="text-2xl font-black syne italic uppercase">Neon Dreams</h3>
+                <div class="mt-5">
+                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Minimalist Structure</h3>
+                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Architecture / Study</p>
                 </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="card-pop group relative bg-zinc-900 border-2 border-white overflow-hidden transition-all duration-300">
-                <div class="aspect-video overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80&w=1000" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="md:col-span-4 md:mt-24" data-aos="fade-up" data-aos-delay="200">
+                <div class="img-container aspect-[3/4] rounded-sm">
+                    <img src="https://images.pexels.com/photos/2096700/pexels-photo-2096700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 2">
                 </div>
-                <div class="p-6 bg-[--acid-green] text-black">
-                    <span class="text-xs font-bold uppercase text-pink-600">Motion Design</span>
-                    <h3 class="text-2xl font-black syne italic uppercase">Cyber Archives</h3>
+                <div class="mt-5">
+                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Organic Forms</h3>
+                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Digital Painting</p>
                 </div>
             </div>
 
+            <!-- Project 3 -->
+            <div class="md:col-span-5" data-aos="fade-up">
+                <div class="img-container aspect-square rounded-sm shadow-sm">
+                    <img src="https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 3">
+                </div>
+                <div class="mt-5">
+                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Light & Shadow</h3>
+                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Experimental Art</p>
+                </div>
+            </div>
+
+            <!-- Project 4 (Wide) -->
+            <div class="md:col-span-7 md:mt-[-100px]" data-aos="fade-up" data-aos-delay="300">
+                <div class="img-container aspect-[4/3] rounded-sm">
+                    <img src="https://images.pexels.com/photos/2471235/pexels-photo-2471235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 4">
+                </div>
+                <div class="mt-5">
+                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Urban Solitude</h3>
+                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Photography / 2026</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white text-black py-20 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
-            <div>
-                <h2 class="text-5xl md:text-8xl syne font-black tracking-tighter leading-none mb-6">LET'S <br> CREATE.</h2>
-                <a href="mailto:karim@example.com" class="text-2xl font-bold underline decoration-4 decoration-[--hot-pink]">CONTACT@KARIM.ART</a>
+    <footer id="about" class="px-8 py-32 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+            <div class="w-16 h-[2px] bg-accent mx-auto mb-10"></div>
+            <h2 class="serif italic text-4xl md:text-6xl mb-8">Ready to bring your <br> <span class="text-accent">vision to life?</span></h2>
+            
+            <a href="mailto:hello@karim.studio" class="text-xl md:text-2xl font-light hover:text-accent transition border-b border-gray-300 pb-2">
+                contact@karim.studio
+            </a>
+            
+            <div class="mt-20 flex justify-center gap-10 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
+                <a href="#" class="hover:text-black">Instagram</a>
+                <a href="#" class="hover:text-black">Behance</a>
+                <a href="#" class="hover:text-black">Email</a>
             </div>
-            <div class="text-right">
-                <p class="font-bold uppercase mb-2">Socials</p>
-                <ul class="space-y-1 text-sm uppercase">
-                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Instagram</a></li>
-                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Dribbble</a></li>
-                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Behance</a></li>
-                </ul>
-            </div>
+            <p class="mt-16 text-[9px] text-gray-300 uppercase tracking-widest">© 2026 Karim Archive. Made with Intention.</p>
         </div>
     </footer>
 
     <script>
-        // Animasi halus saat scroll menggunakan GSAP
-        gsap.from(".syne", {
-            duration: 1.5,
-            y: 100,
-            opacity: 0,
-            stagger: 0.3,
-            ease: "power4.out"
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-quad'
         });
     </script>
 </body>
