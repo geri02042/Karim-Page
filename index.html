@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KARIM | Creative Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --acid-green: #ccff00;
+            --hot-pink: #ff00ff;
+            --deep-purple: #6600ff;
+        }
+        
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Unbounded', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated Fluid Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #000, #1a1a1a, #001a33);
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px; height: 500px;
+            background: var(--deep-purple);
+            filter: blur(100px);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(100%, 50%); }
+        }
+
+        .syne { font-family: 'Syne', sans-serif; }
+
+        /* Marquee Animation */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            background: var(--acid-green);
+            color: #000;
+            padding: 10px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .card-pop:hover {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 10px 10px 0px var(--hot-pink);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient">
+        <div class="blob"></div>
+    </div>
+
+    <!-- Header -->
+    <nav class="p-6 flex justify-between items-center fixed w-full z-50 mix-blend-difference">
+        <div class="text-2xl font-black italic tracking-tighter">KARIM.</div>
+        <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#" class="hover:text-[--acid-green]">Works</a>
+            <a href="#" class="hover:text-[--acid-green]">About</a>
+            <a href="https://instagram.com/namaku.karim" class="bg-white text-black px-4 py-1 rounded-full">Follow</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-6xl md:text-9xl syne font-black leading-none mb-4 tracking-tighter uppercase">
+            VISUAL <br> <span class="text-[--acid-green]">ENERGY</span>
+        </h1>
+        <p class="text-sm md:text-base max-w-lg opacity-80 mb-8 font-light">
+            Crafting vibrant digital experiences and high-fidelity visuals. Where color meets chaos.
+        </p>
+        <div class="flex gap-4">
+            <div class="w-12 h-12 rounded-full border border-white flex items-center justify-center animate-bounce">
+                ↓
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Text Divider -->
+    <div class="marquee border-y-2 border-black">
+        <div class="marquee-content text-2xl">
+            DIGITAL ART • MOTION GRAPHICS • UI/UX • BRANDING • RETRO-FUTURISM • ART ARCHIVE • NOSTALGIA • DIGITAL ART • MOTION GRAPHICS • UI/UX • BRANDING • RETRO-FUTURISM • 
+        </div>
+    </div>
+
+    <!-- Colorful Portfolio Grid -->
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Project 1 -->
+            <div class="card-pop group relative bg-zinc-900 border-2 border-white overflow-hidden transition-all duration-300">
+                <div class="aspect-video overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" 
+                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="p-6 bg-white text-black">
+                    <span class="text-xs font-bold uppercase text-purple-600">Illustration</span>
+                    <h3 class="text-2xl font-black syne italic uppercase">Neon Dreams</h3>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card-pop group relative bg-zinc-900 border-2 border-white overflow-hidden transition-all duration-300">
+                <div class="aspect-video overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&q=80&w=1000" 
+                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="p-6 bg-[--acid-green] text-black">
+                    <span class="text-xs font-bold uppercase text-pink-600">Motion Design</span>
+                    <h3 class="text-2xl font-black syne italic uppercase">Cyber Archives</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-black py-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
+            <div>
+                <h2 class="text-5xl md:text-8xl syne font-black tracking-tighter leading-none mb-6">LET'S <br> CREATE.</h2>
+                <a href="mailto:karim@example.com" class="text-2xl font-bold underline decoration-4 decoration-[--hot-pink]">CONTACT@KARIM.ART</a>
+            </div>
+            <div class="text-right">
+                <p class="font-bold uppercase mb-2">Socials</p>
+                <ul class="space-y-1 text-sm uppercase">
+                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Instagram</a></li>
+                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Dribbble</a></li>
+                    <li><a href="#" class="hover:bg-black hover:text-white px-2">Behance</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi halus saat scroll menggunakan GSAP
+        gsap.from(".syne", {
+            duration: 1.5,
+            y: 100,
+            opacity: 0,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+    </script>
+</body>
+</html>
