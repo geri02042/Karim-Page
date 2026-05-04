@@ -7,147 +7,121 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:italic,wght@600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #fcfcf9; /* Off-white yang hangat */
-            color: #2d2d2d;
-            overflow-x: hidden;
-        }
-        .serif { font-family: 'Cormorant Garamond', serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #ffffff; color: #1a1a1a; scroll-behavior: smooth; }
         
-        /* Aksen Warna */
-        .text-accent { color: #6b705c; } /* Sage Green */
-        .bg-accent { background-color: #cb997e; } /* Muted Terracotta */
+        .art-grid { column-count: 2; column-gap: 1rem; }
+        @media (min-width: 768px) { .art-grid { column-count: 3; column-gap: 1.5rem; } }
         
-        .img-container {
-            background-color: #f0f0f0; /* Fallback color jika gambar loading */
-            overflow: hidden;
-            position: relative;
+        .art-item { 
+            break-inside: avoid; margin-bottom: 1rem; cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            position: relative; background: #f8f8f8; border-radius: 4px; overflow: hidden;
+        }
+        .art-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        /* Modal Fit logic */
+        #modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.98); z-index: 100; overflow-y: auto;
+        }
+        #modal.active { display: flex; animation: fadeIn 0.3s ease; justify-content: center; align-items: center; }
+        
+        /* Memastikan gambar fit di layar laptop/HP */
+        .modal-content-img {
+            max-height: 70vh; /* Gambar maksimal 70% dari tinggi layar */
+            width: auto;
+            object-fit: contain;
         }
 
-        .img-container img {
-            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .img-container:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Border halus dengan warna */
-        .border-subtle { border-color: #e9ecef; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center bg-[#fcfcf9]/80 backdrop-blur-sm border-b border-gray-100">
-        <div class="text-xl font-bold tracking-tighter uppercase flex items-center gap-2">
-            <span class="w-2 h-2 bg-accent rounded-full"></span> Karim
-        </div>
-        <div class="space-x-10 text-[10px] uppercase tracking-[0.2em] font-bold hidden md:flex">
-            <a href="#work" class="hover:text-accent transition">Portfolio</a>
-            <a href="#about" class="hover:text-accent transition">About</a>
-            <a href="https://instagram.com/namaku.karim" target="_blank" class="px-4 py-2 border border-gray-200 rounded-full hover:bg-gray-50 transition">Instagram</a>
-        </div>
+    <!-- Header -->
+    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-white">
+        <div class="font-bold tracking-tighter text-xl uppercase">Karim.</div>
+        <a href="https://instagram.com/namaku.karim" target="_blank" class="text-[10px] uppercase tracking-widest font-bold border-b border-white pb-1">Instagram</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20">
-        <div data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-accent text-xs font-bold uppercase tracking-widest mb-4 block">Visual Designer & Artist</span>
-            <h1 class="text-[11vw] md:text-[7vw] leading-[0.95] tracking-tighter mb-10 font-semibold">
-                Capturing <br> <span class="serif italic text-accent">Silent Stories.</span>
-            </h1>
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                <div class="h-[1px] w-full md:w-1/3 bg-gray-200"></div>
-                <p class="max-w-sm text-gray-500 text-sm leading-relaxed text-center md:text-left">
-                    Merging minimalist aesthetics with deep visual narratives. Creating timeless digital art from the heart of Indonesia.
-                </p>
-            </div>
-        </div>
-    </section>
+    <main class="pt-32 md:pt-40 px-6 md:px-12 pb-20">
+        <header class="max-w-2xl mb-16 md:mb-24" data-aos="fade-up">
+            <p class="text-lg md:text-2xl leading-relaxed text-gray-400 italic font-light mb-4">
+                "a man at the intersection of reality and its deconstruction"
+            </p>
+            <div class="h-px w-16 bg-gray-200"></div>
+        </header>
 
-    <!-- Project Section -->
-    <section id="work" class="px-6 py-20 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div class="art-grid" id="galleryContainer"></div>
+    </main>
+
+    <!-- Modal Lightbox Optimized -->
+    <div id="modal" onclick="closeModal()">
+        <div class="max-w-5xl w-full p-6 flex flex-col items-center gap-6 md:gap-8" onclick="event.stopPropagation()">
+            <img id="modalImg" src="" class="modal-content-img rounded-sm shadow-xl">
             
-            <!-- Project 1 (Stable Image Link) -->
-            <div class="md:col-span-8" data-aos="fade-up">
-                <div class="img-container aspect-[16/9] rounded-sm">
-                    <img src="https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 1">
-                </div>
-                <div class="mt-5">
-                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Minimalist Structure</h3>
-                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Architecture / Study</p>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="md:col-span-4 md:mt-24" data-aos="fade-up" data-aos-delay="200">
-                <div class="img-container aspect-[3/4] rounded-sm">
-                    <img src="https://images.pexels.com/photos/2096700/pexels-photo-2096700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 2">
-                </div>
-                <div class="mt-5">
-                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Organic Forms</h3>
-                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Digital Painting</p>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="md:col-span-5" data-aos="fade-up">
-                <div class="img-container aspect-square rounded-sm shadow-sm">
-                    <img src="https://images.pexels.com/photos/3573382/pexels-photo-3573382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 3">
-                </div>
-                <div class="mt-5">
-                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Light & Shadow</h3>
-                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Experimental Art</p>
-                </div>
-            </div>
-
-            <!-- Project 4 (Wide) -->
-            <div class="md:col-span-7 md:mt-[-100px]" data-aos="fade-up" data-aos-delay="300">
-                <div class="img-container aspect-[4/3] rounded-sm">
-                    <img src="https://images.pexels.com/photos/2471235/pexels-photo-2471235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Artwork 4">
-                </div>
-                <div class="mt-5">
-                    <h3 class="text-lg font-medium italic serif uppercase tracking-wide">Urban Solitude</h3>
-                    <p class="text-[10px] text-accent font-bold uppercase tracking-widest">Photography / 2026</p>
-                </div>
+            <div class="text-center max-w-2xl">
+                <h2 id="modalTitle" class="text-2xl md:text-4xl font-bold italic tracking-tighter text-gray-900 leading-tight mb-2"></h2>
+                <div class="h-px w-8 bg-black mx-auto mb-4"></div>
+                <p class="text-gray-500 text-xs md:text-sm leading-relaxed mb-6"></p>
+                <button onclick="closeModal()" class="text-[9px] uppercase tracking-[0.3em] font-black bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition">Close</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer id="about" class="px-8 py-32 bg-white border-t border-gray-100">
-        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-            <div class="w-16 h-[2px] bg-accent mx-auto mb-10"></div>
-            <h2 class="serif italic text-4xl md:text-6xl mb-8">Ready to bring your <br> <span class="text-accent">vision to life?</span></h2>
-            
-            <a href="mailto:hello@karim.studio" class="text-xl md:text-2xl font-light hover:text-accent transition border-b border-gray-300 pb-2">
-                contact@karim.studio
-            </a>
-            
-            <div class="mt-20 flex justify-center gap-10 text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                <a href="#" class="hover:text-black">Instagram</a>
-                <a href="#" class="hover:text-black">Behance</a>
-                <a href="#" class="hover:text-black">Email</a>
-            </div>
-            <p class="mt-16 text-[9px] text-gray-300 uppercase tracking-widest">© 2026 Karim Archive. Made with Intention.</p>
-        </div>
+    <footer class="p-12 md:p-20 border-t border-gray-50 text-center bg-zinc-50">
+        <p class="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-[0.4em] font-medium">
+            2026 Create By <span class="text-black font-bold">Geri's</span>
+        </p>
     </footer>
 
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true,
-            easing: 'ease-out-quad'
+        const myWorks = [
+            { id: "18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU", title: "Midnight Solitude" },
+            { id: "1xYXrfwQ8r3IfWhVgAfc7SQ19LazD0B0k", title: "Abstract Geometry" },
+            { id: "1NkJTNlyLJ_I9Lih8dnDC4EikZDKBvaXR", title: "Digital Echoes" },
+            { id: "1Yl3M7VLFpDCBl0t8iz4puRvYF0VM7oRG", title: "Vibrant Thoughts" },
+            { id: "1qWuY3Rk1c9t31yVXhAnqp182bG3sBnH2", title: "Urban Narrative" },
+            { id: "1RBcgHoAUUMV-H7r0uh4ng3yZydmUQ3Iv", title: "Silent Architecture" },
+            { id: "1KhBTsroEPp6HxKZ3JKPwJ4gDcJ8tEI65", title: "Nature's Minimalist" },
+            { id: "1-ic82Y1UfrJ5iBlo3Qv-h8Kboh-hilw6", title: "Monochrome Study" },
+            { id: "14L_O_ZCYsOY3_3jDrjMJ0qU1S3TJDbKd", title: "Ethereal Form" },
+            { id: "18Fk5np5T3zdd6jIipzVTNof4PNVLgUFS", title: "Complex Simplicity" }
+        ];
+
+        const container = document.getElementById('galleryContainer');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+
+        myWorks.forEach((work, index) => {
+            const directLink = `https://lh3.googleusercontent.com/d/${work.id}`;
+            const item = document.createElement('div');
+            item.className = 'art-item';
+            item.setAttribute('data-aos', 'fade-up');
+            item.setAttribute('data-aos-delay', (index % 3) * 100);
+            item.innerHTML = `<img src="${directLink}" alt="${work.title}" class="w-full h-auto">`;
+            item.onclick = () => openModal(directLink, work.title);
+            container.appendChild(item);
         });
+
+        function openModal(src, title) {
+            modalImg.src = src;
+            modalTitle.innerText = title;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        AOS.init({ duration: 1000, once: true });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
