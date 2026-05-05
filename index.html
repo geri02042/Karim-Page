@@ -3,151 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KARIM | Visual Archive</title>
+    <title>ilham karim | home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        /* Menggunakan Helvetica sebagai font utama */
+        /* Typography: Helvetica Stack */
         body { 
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-            background-color: #ffffff; 
-            color: #1a1a1a; 
-            scroll-behavior: smooth; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        
-        .art-grid { column-count: 2; column-gap: 1rem; }
-        @media (min-width: 768px) { .art-grid { column-count: 3; column-gap: 1.5rem; } }
-        
-        .art-item { 
-            break-inside: avoid; margin-bottom: 1rem; cursor: pointer; 
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
-            position: relative; background: #f8f8f8; overflow: hidden;
-        }
-        .art-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-        /* Modal Fit Logic */
-        #modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 100; justify-content: center; align-items: center;
+        /* Hero Background Setup */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://lh3.googleusercontent.com/d/1dqrdHL9muTut1wYPz1VoGfUBKClpR7Ar');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        #modal.active { display: flex; animation: fadeIn 0.3s ease; }
-        .modal-content-img { max-height: 70vh; width: auto; object-fit: contain; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* Nav Glassmorphism on Mobile */
+        @media (max-width: 767px) {
+            #nav-menu.active {
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-blur: 10px;
+                display: flex !important;
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased text-white">
 
-    <!-- Navigation Menu Baru -->
-    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 flex flex-col md:flex-row justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="font-bold tracking-tighter text-2xl lowercase mb-4 md:mb-0">karim.</div>
-        <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <a href="index.html" class="hover:text-gray-400 transition">Home</a>
-            <a href="about.html" class="hover:text-gray-400 transition">About</a>
-            <a href="artwork.html" class="hover:text-gray-400 transition">Artwork</a>
-            <a href="exhibition.html" class="hover:text-gray-400 transition">Exhibition</a>
-            <a href="articles.html" class="hover:text-gray-400 transition">Interview & Articles</a>
-            <a href="contact.html" class="hover:text-gray-400 transition">Contact</a>
-        </div>
-    </nav>
+    <div class="hero-bg">
+        <!-- Navigation -->
+        <nav class="relative w-full z-50 px-6 py-8 md:px-12 flex justify-between items-center">
+            <!-- Logo Pojok Kiri Atas -->
+            <div class="text-xl md:text-2xl font-medium tracking-tight">Ilham Karim</div>
 
-    <main class="pt-48 px-6 md:px-12 pb-20">
-        <!-- Brand Statement -->
-        <header id="about" class="max-w-2xl mb-16 md:mb-24" data-aos="fade-up">
-            <p class="text-lg md:text-2xl leading-relaxed text-gray-400 italic font-light mb-4">
-                "a man at the intersection of reality and its deconstruction""
-            </p>
-            <div class="h-px w-16 bg-gray-200"></div>
-        </header>
+            <!-- Hamburger Button (Mobile) -->
+            <button id="menu-btn" class="block md:hidden z-50 focus:outline-none">
+                <div id="line1" class="w-6 h-0.5 bg-white mb-1.5 transition-all"></div>
+                <div id="line2" class="w-6 h-0.5 bg-white transition-all"></div>
+            </button>
 
-        <!-- Gallery Section -->
-        <div id="artwork" class="art-grid" id="galleryContainer">
-            <!-- Images will be rendered by JS -->
-        </div>
-    </main>
+            <!-- Menu Links (Kanan Atas) -->
+            <div id="nav-menu" class="hidden md:flex gap-6 md:gap-8 text-[11px] md:text-[13px] font-light tracking-wide transition-all duration-500 fixed inset-0 md:relative md:inset-auto flex-col md:flex-row justify-center items-center md:bg-transparent">
+                <a href="about.html" class="hover:opacity-60 transition">About</a>
+                <a href="artwork.html" class="hover:opacity-60 transition">Artworks</a>
+                <a href="exhibition.html" class="hover:opacity-60 transition">Exhibition</a>
+                <a href="articles.html" class="hover:opacity-60 transition">Project</a> <!-- Sesuai gambar: 'Projcet' -->
+                <a href="contact.html" class="hover:opacity-60 transition">Contact</a>
+            </div>
+        </nav>
 
-    <!-- Modal Lightbox -->
-    <div id="modal" onclick="closeModal()">
-        <div class="max-w-5xl w-full p-6 flex flex-col items-center gap-6 md:gap-8" onclick="event.stopPropagation()">
-            <img id="modalImg" src="" class="modal-content-img rounded-sm shadow-xl">
-            <div class="text-center max-w-2xl">
-                <h2 id="modalTitle" class="text-2xl md:text-4xl font-bold italic tracking-tighter text-gray-900 leading-tight mb-2"></h2>
-                <div class="h-px w-8 bg-black mx-auto mb-4"></div>
-                <button onclick="closeModal()" class="text-[9px] uppercase tracking-[0.3em] font-black bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition">Close</button>
+        <!-- Hero Content Center Left -->
+        <div class="flex-grow flex items-center px-6 md:px-24">
+            <div class="max-w-2xl" data-aos="fade-up" data-aos-duration="1500">
+                <h1 class="text-5xl md:text-7xl font-medium tracking-tight mb-4">Ilham Karim</h1>
+                <div class="space-y-1 text-[12px] md:text-[14px] font-light tracking-normal opacity-90">
+                    <p><span class="font-bold">Visual artist</span> based in Yogyakarta, Indonesia</p>
+                    <p>Part of Titik Kumpul Forum & Collective</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer dengan Layout Baru -->
-    <footer class="p-10 md:px-12 md:py-16 border-t border-gray-100 bg-zinc-50">
-        <div class="max-w-full flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
-            
-            <!-- Pojok Kiri: Copyright -->
-            <div class="text-[10px] md:text-[11px] text-gray-500 uppercase tracking-[0.2em] w-full md:w-1/3 text-center md:text-left">
-                (c) 2026 Ilham Karim <br>
-                <span class="text-gray-300">Powered by Geri</span>
-            </div>
-
-            <!-- Bagian Tengah: Logo Instagram -->
-            <div class="w-full md:w-1/3 flex justify-center">
-                <a href="https://instagram.com/namaku.karim" target="_blank" class="hover:opacity-50 transition">
-                    <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Pojok Kanan: Empty/Space -->
-            <div class="hidden md:block md:w-1/3"></div>
-
+    <!-- Footer Minimalist -->
+    <footer class="absolute bottom-0 w-full p-8 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 bg-transparent">
+        <div class="flex items-center gap-2 opacity-60">
+            <!-- SVG Copyright Icon -->
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M15 9.5c-.3-.5-.8-.8-1.5-.8-1.1 0-2 .9-2 2s.9 2 2 2c.7 0 1.2-.3 1.5-.8"/>
+            </svg>
+            <span class="text-[10px] uppercase tracking-widest">2026 ilham karim</span>
+        </div>
+        <div class="opacity-40 text-[9px] uppercase tracking-[0.3em]">
+            powered by geri
         </div>
     </footer>
 
     <script>
-        const myWorks = [
-            { id: "18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU", title: "Midnight Solitude" },
-            { id: "1xYXrfwQ8r3IfWhVgAfc7SQ19LazD0B0k", title: "Abstract Geometry" },
-            { id: "1NkJTNlyLJ_I9Lih8dnDC4EikZDKBvaXR", title: "Digital Echoes" },
-            { id: "1Yl3M7VLFpDCBl0t8iz4puRvYF0VM7oRG", title: "Vibrant Thoughts" },
-            { id: "1qWuY3Rk1c9t31yVXhAnqp182bG3sBnH2", title: "Urban Narrative" },
-            { id: "1RBcgHoAUUMV-H7r0uh4ng3yZydmUQ3Iv", title: "Silent Architecture" },
-            { id: "1KhBTsroEPp6HxKZ3JKPwJ4gDcJ8tEI65", title: "Nature's Minimalist" },
-            { id: "1-ic82Y1UfrJ5iBlo3Qv-h8Kboh-hilw6", title: "Monochrome Study" },
-            { id: "14L_O_ZCYsOY3_3jDrjMJ0qU1S3TJDbKd", title: "Ethereal Form" },
-            { id: "18Fk5np5T3zdd6jIipzVTNof4PNVLgUFS", title: "Complex Simplicity" }
-        ];
+        // AOS Animation
+        AOS.init({ once: true });
 
-        const gallery = document.getElementById('artwork');
-        const modal = document.getElementById('modal');
-        const modalImg = document.getElementById('modalImg');
-        const modalTitle = document.getElementById('modalTitle');
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
 
-        myWorks.forEach((work, index) => {
-            const directLink = `https://lh3.googleusercontent.com/d/${work.id}`;
-            const item = document.createElement('div');
-            item.className = 'art-item';
-            item.setAttribute('data-aos', 'fade-up');
-            item.setAttribute('data-aos-delay', (index % 3) * 100);
-            item.innerHTML = `<img src="${directLink}" alt="${work.title}" class="w-full h-auto">`;
-            item.onclick = () => openModal(directLink, work.title);
-            gallery.appendChild(item);
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            line1.classList.toggle('rotate-45');
+            line1.classList.toggle('translate-y-1');
+            line2.classList.toggle('-rotate-45');
+            line2.classList.toggle('-translate-y-1');
+            
+            if (navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                navMenu.style.display = '';
+                document.body.style.overflow = 'auto';
+            }
         });
-
-        function openModal(src, title) {
-            modalImg.src = src;
-            modalTitle.innerText = title;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        AOS.init({ duration: 1000, once: true });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
