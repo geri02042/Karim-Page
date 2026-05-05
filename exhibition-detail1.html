@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exhibition Detail - Ilham Karim</title>
+    <style>
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        
+        body { background-color: #fff; color: #000; }
+
+        /* --- HEADER (Konsisten) --- */
+        header { 
+            width: 100%; padding: 40px 5%; 
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo a { text-decoration: none; color: #000; font-size: 1.2rem; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { text-decoration: none; color: rgba(0,0,0,0.5); font-size: 0.85rem; transition: 0.3s; }
+        nav ul li a.active, nav ul li a:hover { color: #000; }
+
+        /* --- DETAIL CONTENT --- */
+        main {
+            padding: 20px 5% 100px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title-section h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        .title-section .date { font-size: 0.9rem; color: #666; }
+
+        /* --- TOP SECTION (Teks & Poster) --- */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .intro-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .intro-text p { margin-bottom: 20px; }
+        .intro-text .author { margin-top: 30px; font-weight: bold; }
+
+        .poster-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- GALLERY GRID (Meniru layout gambar) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* Span 2 kolom untuk gambar landscape di bawah */
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* --- FOOTER (Konsisten) --- */
+        footer { 
+            width: 100%; padding: 60px 8% 40px 8%; 
+            display: flex; justify-content: space-between; align-items: flex-end; 
+        }
+        .footer-left { flex: 1; font-size: 0.75rem; color: rgba(0,0,0,0.5); }
+        .footer-center { flex: 1; display: flex; justify-content: center; }
+        .instagram-icon { width: 20px; height: 20px; fill: #000; }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .intro-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            header { flex-direction: column; gap: 20px; }
+            footer { flex-direction: column; align-items: center; text-align: center; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html">Ilham Karim</a></div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="artwork.html">Artworks</a></li>
+                <li><a href="exhibition.html" class="active">Exhibition</a></li>
+                <li><a href="articles.html">Project</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="title-section">
+            <h1>S3buah Tak Cukup, B3rbuah...</h1>
+            <p class="date">12 September 2025</p>
+        </section>
+
+        <!-- Bagian Atas: Teks vs Poster -->
+        <section class="intro-grid">
+            <div class="intro-text">
+                <p>Barangkali mereka telah sepakat bahwa kematangan bukanlah sesuatu untuk dikejar. Mereka telah hidup di wilayah in-progress, selalu sementara, selalu belum matang. Seperti tanpa gaya, mereka mengangkat narasi yang masih patah-patah...</p>
+                <p>Tentang sejarah, identitas, memori, lingkungan, modernitas, dan segala hal yang mengusik keseharian mereka.</p>
+                <div class="author">Penulis: Eugenia</div>
+            </div>
+            <div class="poster-img">
+                <!-- Ganti dengan URL Poster Asli -->
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Poster S3buah Tak Cukup">
+            </div>
+        </section>
+
+        <!-- Bagian Bawah: Galeri Dokumentasi -->
+        <section class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Doc 1">
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Doc 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Doc 3">
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Doc 4">
+            </div>
+            <div class="gallery-item full-width">
+                <img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Doc Wide">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <p>© 2026 Ilham Karim</p>
+            <p>Powered by Geri</p>
+        </div>
+        <div class="footer-center">
+            <a href="#"><svg class="instagram-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.28-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        </div>
+        <div class="footer-right" style="flex:1;"></div>
+    </footer>
+
+</body>
+</html>
