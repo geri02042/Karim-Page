@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>artwork | karim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* Typography: Helvetica Stack */
+        body { 
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+            background-color: #ffffff; 
+            color: #1a1a1a; 
+            scroll-behavior: smooth; 
+        }
+        
+        /* Masonry Grid Setup */
+        .art-grid { column-count: 2; column-gap: 1.5rem; }
+        @media (min-width: 768px) { .art-grid { column-count: 3; column-gap: 1.5rem; } }
+        
+        .art-item { 
+            break-inside: avoid; margin-bottom: 1.5rem; cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            position: relative; background: #f8f8f8; border-radius: 4px; overflow: hidden;
+        }
+        .art-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        /* Modal Fit Logic */
+        #modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.98); z-index: 100; justify-content: center; align-items: center;
+        }
+        #modal.active { display: flex; animation: fadeIn 0.3s ease; }
+        .modal-content-img { max-height: 70vh; width: auto; object-fit: contain; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 flex flex-col md:flex-row justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="font-bold tracking-tighter text-2xl lowercase mb-4 md:mb-0">karim.</div>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-[10px] uppercase tracking-[0.2em] font-bold">
+            <a href="Index.html" class="hover:text-gray-400 transition">Home</a>
+            <a href="about.html" class="hover:text-gray-400 transition">About</a>
+            <a href="artwork.html" class="hover:text-gray-400 transition">Artwork</a>
+            <a href="exhibition.html" class="hover:text-gray-400 transition">Exhibition</a>
+            <a href="articles.html" class="hover:text-gray-400 transition">Interview & Articles</a>
+            <a href="contact.html" class="hover:text-gray-400 transition">Contact</a>
+        </div>
+    </nav>
+
+    <main class="pt-48 px-6 md:px-12 pb-20">
+        <!-- Section Title -->
+        <header class="max-w-2xl mb-16" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-4 lowercase">selected artwork.</h1>
+            <p class="text-sm text-gray-400 uppercase tracking-widest">visual archive — digital & painting</p>
+        </header>
+
+        <!-- Gallery Grid -->
+        <div class="art-grid" id="galleryContainer">
+            <!-- Images will be rendered by JS -->
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="modal" onclick="closeModal()">
+        <div class="max-w-5xl w-full p-6 flex flex-col items-center gap-6 md:gap-8" onclick="event.stopPropagation()">
+            <img id="modalImg" src="" class="modal-content-img rounded-sm shadow-xl">
+            <div class="text-center max-w-2xl">
+                <h2 id="modalTitle" class="text-2xl md:text-4xl font-bold italic tracking-tighter text-gray-900 leading-tight mb-2"></h2>
+                <div class="h-px w-8 bg-black mx-auto mb-6"></div>
+                <button onclick="closeModal()" class="text-[9px] uppercase tracking-[0.3em] font-black bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="p-10 md:px-12 md:py-16 border-t border-gray-100 bg-zinc-50">
+        <div class="max-w-full flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
+            
+            <!-- Pojok Kiri -->
+            <div class="text-[10px] md:text-[11px] text-gray-500 uppercase tracking-[0.2em] w-full md:w-1/3 text-center md:text-left">
+                (c) 2026 ilham karim <br>
+                <span class="text-gray-300">powered by geri</span>
+            </div>
+
+            <!-- Bagian Tengah: Logo Instagram -->
+            <div class="w-full md:w-1/3 flex justify-center">
+                <a href="https://instagram.com/namaku.karim" target="_blank" class="hover:opacity-50 transition text-black">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Pojok Kanan -->
+            <div class="hidden md:block md:w-1/3"></div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Karya
+        const myWorks = [
+            { id: "18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU", title: "Midnight Solitude" },
+            { id: "1xYXrfwQ8r3IfWhVgAfc7SQ19LazD0B0k", title: "Abstract Geometry" },
+            { id: "1NkJTNlyLJ_I9Lih8dnDC4EikZDKBvaXR", title: "Digital Echoes" },
+            { id: "1Yl3M7VLFpDCBl0t8iz4puRvYF0VM7oRG", title: "Vibrant Thoughts" },
+            { id: "1qWuY3Rk1c9t31yVXhAnqp182bG3sBnH2", title: "Urban Narrative" },
+            { id: "1RBcgHoAUUMV-H7r0uh4ng3yZydmUQ3Iv", title: "Silent Architecture" },
+            { id: "1KhBTsroEPp6HxKZ3JKPwJ4gDcJ8tEI65", title: "Nature's Minimalist" },
+            { id: "1-ic82Y1UfrJ5iBlo3Qv-h8Kboh-hilw6", title: "Monochrome Study" },
+            { id: "14L_O_ZCYsOY3_3jDrjMJ0qU1S3TJDbKd", title: "Ethereal Form" },
+            { id: "18Fk5np5T3zdd6jIipzVTNof4PNVLgUFS", title: "Complex Simplicity" }
+        ];
+
+        const container = document.getElementById('galleryContainer');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+
+        // Render Gallery
+        myWorks.forEach((work, index) => {
+            const directLink = `https://lh3.googleusercontent.com/d/${work.id}`;
+            const item = document.createElement('div');
+            item.className = 'art-item';
+            item.setAttribute('data-aos', 'fade-up');
+            item.setAttribute('data-aos-delay', (index % 3) * 100);
+            item.innerHTML = `<img src="${directLink}" alt="${work.title}" class="w-full h-auto">`;
+            item.onclick = () => openModal(directLink, work.title);
+            container.appendChild(item);
+        });
+
+        function openModal(src, title) {
+            modalImg.src = src;
+            modalTitle.innerText = title;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        AOS.init({ duration: 1000, once: true });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
