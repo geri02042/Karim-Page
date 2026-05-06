@@ -147,6 +147,41 @@
             .footer-center { position: static; transform: none; margin: 20px 0; }
             footer { flex-direction: column; align-items: center; }
         }
+        .artsy-logo-link {
+            display: inline-block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            text-decoration: none;
+        }
+
+        /* Ukuran logo gambar */
+        .artsy-logo-img {
+            width: 35px; /* Anda bisa menyesuaikan lebar ini */
+            height: auto;
+            display: block;
+        }
+
+        /* Efek Hover (Saat kursor di atas gambar) */
+        .artsy-logo-link:hover {
+            transform: scale(1.05); /* Sedikit membesar */
+            opacity: 0.8; /* Sedikit memudar untuk efek interaktif */
+        }
+
+        /* Pengaturan posisi di tengah layar */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sub-text {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 14px;
+            color: #333;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -167,6 +202,12 @@
             
     <main class="container">
         <h1 class="section-title">Artwork
+            
+    <a href="https://www.artsy.net/artist/ilham-karim" target="_blank" class="artsy-logo-link">
+        <!-- Menggunakan file Artsy_logo.svg dari Drive Anda -->
+        <img src="https://lh3.googleusercontent.com/d/1SAdVLod7z-tQSg1XNY5a71JqiEPMdZHq" alt="Artsy Logo" class="artsy-logo-img">
+    </a>
+            <p>&nbsp;&nbsp;&nbsp;</p>
         <div class="artwork-grid" id="gallery">
             <div class="grid-item" onclick="openLightbox(0)"><img src="https://lh3.googleusercontent.com/d/18DCibzbe8MotTf8XuWQQxRTzUFoq7dzU" alt="Artwork 1"></div>
             <div class="grid-item" onclick="openLightbox(1)"><img src="https://lh3.googleusercontent.com/d/1xYXrfwQ8r3IfWhVgAfc7SQ19LazD0B0k" alt="Artwork 2"></div>
@@ -178,8 +219,11 @@
             <div class="grid-item" onclick="openLightbox(7)"><img src="https://lh3.googleusercontent.com/d/1-ic82Y1UfrJ5iBlo3Qv-h8Kboh-hilw6" alt="Artwork 8"></div>
             <div class="grid-item" onclick="openLightbox(8)"><img src="https://lh3.googleusercontent.com/d/14L_O_ZCYsOY3_3jDrjMJ0qU1S3TJDbKd" alt="Artwork 9"></div>
             <div class="grid-item" onclick="openLightbox(9)"><img src="https://lh3.googleusercontent.com/d/18Fk5np5T3zdd6jIipzVTNof4PNVLgUFS" alt="Artwork 10"></div>
+            <div class="grid-item" onclick="openLightbox(9)"><img src="https://lh3.googleusercontent.com/d/18Fk5np5T3zdd6jIipzVTNof4PNVLgUFS" alt="Artwork 11"></div>
         </div>
+        
         </h1>
+        
     </main>
 
     <div id="myLightbox" class="lightbox">
@@ -201,8 +245,8 @@
 
     <footer>
         <div class="footer-left">
-            <p>© 2026 ILHAM KARIM</p>
-            <p>POWERED BY GERI</p>
+            <p>© 2026 Ilham Karim</p>
+            <p>Powered By Geri</p>
         </div>
         <div class="footer-center">
             <a href="https://instagram.com/namaku.karim" target="_blank">
@@ -224,6 +268,7 @@
             { title: "Floating Memory", specs: "Mixed media | 90 x 90 cm | 2025", exhib: "Taipei Art Fair, Taiwan." },
             { title: "The Red Suit", specs: "Acrylic on canvas | 130 x 100 cm | 2025", exhib: "Art Jakarta 2025." },
             { title: "Last Frame", specs: "Oil on canvas | 100 x 100 cm | 2024", exhib: "Final Project Exhibition, ISI Yogyakarta." }
+            
         ];
 
         let currentSlideIndex = 0;
