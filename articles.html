@@ -1,152 +1,151 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project - Ilham Karim</title>
+    <title>ilham karim | projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        /* Base Styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-        body { background-color: #fff; color: #333; line-height: 1.6; }
-
-        /* Navigation */
-        header { padding: 40px 8% 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo a { text-decoration: none; color: #444; font-size: 1.2rem; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav ul li a { text-decoration: none; color: #888; font-size: 0.85rem; transition: 0.3s; }
-        nav ul li a.active, nav ul li a:hover { color: #000; }
-
-        /* Main Content */
-        .container { padding: 40px 8% 100px; max-width: 1400px; margin: 0 auto; }
-        
-        .page-title { 
-            font-size: 2.2rem; 
-            font-weight: bold; 
-            margin-bottom: 80px; 
-            color: #333;
-            letter-spacing: -0.5px;
-        }
-
-        /* Project Grid */
-        .project-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
+        body { 
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+            background-color: #fff; 
+            color: #000;
         }
 
         .project-card {
-            background-color: #383638; /* Warna abu-abu gelap sesuai referensi */
-            aspect-ratio: 16 / 9;
-            padding: 30px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            aspect-ratio: 2.5 / 1;
             display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            align-items: center;
+            padding: 20px 30px;
         }
-
+        
         .project-card:hover {
-            transform: translateY(-5px);
-            background-color: #4a484a;
+            background-color: #444;
+            transform: translateY(-3px);
         }
 
-        .project-card h2 {
-            color: #fff;
-            font-size: 1.4rem;
-            font-weight: bold;
-            line-height: 1.2;
-            z-index: 2;
-            max-width: 90%;
-        }
-
-        /* Footer */
-        footer { 
-            padding: 40px 8%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            font-size: 0.75rem; 
-            color: #aaa;
-            border-top: 1px solid #f9f9f9;
-        }
-        .footer-left p { margin-bottom: 4px; }
-        .social-icon { font-size: 1.2rem; color: #333; text-decoration: none; }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .container { animation: fadeInUp 0.8s ease-out; }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .project-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .project-grid { grid-template-columns: 1fr; }
-            .page-title { font-size: 1.8rem; margin-bottom: 40px; }
-            header { flex-direction: column; gap: 20px; text-align: center; }
+        /* Mobile Nav Glassmorphism */
+        @media (max-width: 767px) {
+            #nav-menu.active {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                display: flex !important;
+            }
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <header>
-        <div class="logo"><a href="index.html">Ilham Karim</a></div>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="artwork.html">Artworks</a></li>
-                <li><a href="exhibition.html">Exhibition</a></li>
-                <li><a href="project.html" class="active">Project</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class="relative w-full z-50 px-6 py-8 md:px-12 flex justify-between items-start bg-white">
+        <div class="text-xl md:text-2xl font-medium tracking-tight">
+            <a href="index.html">Ilham Karim</a>
+        </div>
 
-    <main class="container">
-        <h1 class="page-title">Selected Project</h1>
+        <button id="menu-btn" class="block md:hidden z-50 focus:outline-none">
+            <div id="line1" class="w-6 h-0.5 bg-black mb-1.5 transition-all"></div>
+            <div id="line2" class="w-6 h-0.5 bg-black transition-all"></div>
+        </button>
 
-        <div class="project-grid">
+        <div id="nav-menu" class="hidden md:flex gap-6 md:gap-8 text-[11px] md:text-[13px] font-light tracking-wide transition-all duration-500 fixed inset-0 md:relative md:inset-auto flex-col md:flex-row justify-center items-center md:bg-transparent text-gray-500">
+            <a href="about.html" class="hover:text-black transition">About</a>
+            <a href="artwork.html" class="hover:text-black transition">Artworks</a>
+            <a href="exhibition.html" class="hover:text-black transition">Exhibition</a>
+            <a href="articles.html" class="text-black font-medium">Project</a>
+            <a href="contact.html" class="hover:text-black transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-8 md:px-24 py-12">
+        
+        <h2 class="text-3xl font-bold mb-16" data-aos="fade-right">Selected Project</h2>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            
             <!-- Project 1 -->
-            <a href="#" class="project-card">
-                <h2>Artopologi x<br>Queen City Mall</h2>
+            <a href="project-detail-1.html" class="project-card group" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-white text-[16px] md:text-[18px] font-medium leading-tight">
+                    Artopologi x <br> Queen City Mall
+                </h3>
             </a>
 
             <!-- Project 2 -->
-            <a href="#" class="project-card">
-                <h2>Nawanata</h2>
+            <a href="project-detail-2.html" class="project-card group" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-white text-[16px] md:text-[18px] font-medium leading-tight">
+                    Nawanata
+                </h3>
             </a>
 
             <!-- Project 3 -->
-            <a href="#" class="project-card">
-                <h2>Titik Kumpul Forum<br>& Collective</h2>
+            <a href="project-detail-3.html" class="project-card group" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-white text-[16px] md:text-[18px] font-medium leading-tight">
+                    Titik Kumpul Forum <br> & Collective
+                </h3>
             </a>
 
             <!-- Project 4 -->
-            <a href="#" class="project-card">
-                <h2>TORO Band</h2>
+            <a href="project-detail-4.html" class="project-card group" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-white text-[16px] md:text-[18px] font-medium leading-tight">
+                    TORO Band
+                </h3>
             </a>
 
             <!-- Project 5 -->
-            <a href="#" class="project-card">
-                <h2>Art Residency:<br>Taichung</h2>
+            <a href="project-detail-5.html" class="project-card group" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-white text-[16px] md:text-[18px] font-medium leading-tight">
+                    Art Residency: <br> Taichung
+                </h3>
             </a>
+
         </div>
     </main>
 
-    <footer>
-        <div class="footer-left">
-            <p>© 2026 Ilham Karim</p>
+    <!-- Footer -->
+    <footer class="w-full p-12 mt-20 flex flex-col items-center gap-6 bg-white">
+        <div class="flex flex-col items-center opacity-40 text-[10px] tracking-widest text-center">
+            <p>© 2026 ILHAM KARIM</p>
             <p>Powered by Geri</p>
         </div>
-        <div class="footer-right">
-            <a href="#" class="social-icon"></a> <!-- Icon Instagram -->
-        </div>
+        
+        <a href="https://instagram.com/namaku.karim" target="_blank" class="opacity-60 hover:opacity-100 transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+        </a>
     </footer>
 
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            line1.classList.toggle('rotate-45');
+            line1.classList.toggle('translate-y-1.5');
+            line2.classList.toggle('-rotate-45');
+            line2.classList.toggle('-translate-y-1');
+            
+            if (navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                navMenu.style.display = '';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
