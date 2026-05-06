@@ -1,84 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about | karim</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <title>About - Ilham Karim</title>
     <style>
-        /* Typography: Helvetica Stack */
-        body { 
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-            background-color: #ffffff; 
-            color: #1a1a1a;
-            scroll-behavior: smooth;
+        /* Style khusus untuk Footer */
+   
+        footer {
+        padding: 60px 10% 40px;
+        border-top: 1px solid #eee;
+        display: flex;
+        flex-direction: column; /* Mengatur susunan secara vertikal */
+        align-items: center;    /* Memastikan semua konten di tengah secara horizontal */
+        gap: 20px;
+        font-size: 0.75rem;
+        color: #aaa;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .instagram-link {
+        color: #333;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .instagram-link:hover {
+        opacity: 0.6;
+    }
+
+    .instagram-icon {
+        width: 24px; /* Ukuran logo */
+        height: 24px;
+        fill: currentColor; /* Mengikuti warna teks */
+    }
+
+    .footer-bottom {
+        text-align: center;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+        footer {
+            padding: 40px 5%;
         }
-        .cv-section { border-bottom: 1px solid #f0f0f0; padding-bottom: 2rem; margin-bottom: 2rem; }
-        .year-label { min-width: 60px; font-weight: bold; color: #999; }
+    }
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        body { background-color: #fff; color: #000; -webkit-font-smoothing: antialiased; }
+
+        /* --- HEADER OVERLAY --- */
+        header { 
+            position: absolute; top: 0; left: 0; width: 100%; padding: 40px 5%; 
+            display: flex; justify-content: space-between; align-items: center; z-index: 10; 
+        }
+        .logo a { text-decoration: none; color: #555; font-size: 1.1rem; letter-spacing: 0.5px; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { text-decoration: none; color: #888; font-size: 0.8rem; transition: 0.3s; }
+        nav ul li a.active, nav ul li a:hover { color: #000; }
+
+        /* --- HERO SECTION --- */
+        .hero-container { width: 100%; margin-bottom: 50px; }
+        .hero-container img { width: 100%; display: block; }
+
+        /* --- CONTENT BODY --- */
+        .content-body { padding: 0 10% 100px; max-width: 1200px; margin: 0 auto; }
+
+        /* Profile Section (Sesuai Gambar Referensi) */
+        .profile-intro { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; margin-bottom: 80px; align-items: start; }
+        
+        .bio-title { font-size: 1rem; color: #666; margin-bottom: 30px; font-weight: normal; }
+        .bio-text { font-size: 0.9rem; line-height: 1.6; color: #333; text-align: left; }
+        .bio-text p { margin-bottom: 20px; }
+
+        .profile-img img { width: 100%; height: auto; }
+
+        /* --- CV / EXHIBITION SECTION --- */
+        .cv-container { border-top: 1px solid #ccc; padding-top: 50px; margin-top: 50px; }
+        
+        .cv-row { display: grid; grid-template-columns: 200px 1fr; margin-bottom: 50px; }
+        .cv-label { font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .cv-group { margin-bottom: 35px; display: grid; grid-template-columns: 80px 1fr; font-size: 0.85rem; }
+        .year { color: #999; }
+        .items-list { list-style: none; color: #444; line-height: 1.8; }
+        .items-list li { margin-bottom: 10px; padding-left: 15px; position: relative; }
+        .items-list li::before { content: "-"; position: absolute; left: 0; }
+
+        /* --- ANIMATION --- */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 60px 10%; border-top: 1px solid #eee; font-size: 0.75rem; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .profile-intro { grid-template-columns: 1fr; gap: 40px; }
+            .cv-row { grid-template-columns: 1fr; gap: 20px; }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-6 py-6 md:px-12 flex flex-col md:flex-row justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="font-bold tracking-tighter text-2xl lowercase mb-4 md:mb-0">karim.</div>
-        <div class="flex flex-wrap justify-center gap-6 md:gap-10 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <a href="index.html" class="hover:text-gray-400 transition">Home</a>
-            <a href="about.html" class="hover:text-gray-400 transition">About</a>
-            <a href="artwork.html" class="hover:text-gray-400 transition">Artwork</a>
-            <a href="exhibition.html" class="hover:text-gray-400 transition">Exhibition</a>
-            <a href="articles.html" class="hover:text-gray-400 transition">Interview & Articles</a>
-            <a href="contact.html" class="hover:text-gray-400 transition">Contact</a>
-        </div>
-    </nav>
+    <header>
+        <div class="logo"><a href="index.html">Ilham Karim</a></div>
+        <nav>
+            <ul>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="artwork.html">Artworks</a></li>
+                <li><a href="exhibition.html">Exhibition</a></li>
+                <li><a href="articles.html">Project</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main class="pt-40 pb-20">
-        <div class="px-6 md:px-12 max-w-6xl mx-auto">
-            
-            <!-- Profile Section -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 mb-32 items-start">
-                <div data-aos="fade-right">
-                    <!-- Foto Diri -->
-                    <img src="https://lh3.googleusercontent.com/d/1fMbeGdy_t5JSSj_zIRlPh68NWFN-_Z7s" 
-                         alt="Ilham Karim" class="w-full h-auto shadow-sm">
-                    <p class="text-[10px] uppercase tracking-widest mt-4 text-gray-400 italic">ilham karim in his studio, 2024</p>
+    <div class="hero-container">
+        <img src="https://lh3.googleusercontent.com/d/1J24Re2ceMjR7bEyLdaLE3xIsxyaMw5Ay" alt="Artist at Work">
+    </div>
+
+    <main class="content-body">
+        <!-- Profile Section (Teks Sesuai Gambar Referensi) -->
+        <div class="profile-intro reveal">
+            <div class="bio-content">
+                <h2 class="bio-title">Profile</h2>
+                <div class="bio-text">
+                    <p><strong>Ilham Karim</strong> (born 1999, Jakarta; raised in Palembang) is an artist based in Yogyakarta. He focuses on painting, exploring the canvas through diverse forms and compositions. His work is influenced by digital culture and his multicultural family identity, presenting artistic exploration as a personal language to interpret the past, present and possible futures. The bold use of colours, figures and materials in his work reflects contemporary aesthetics and ideas. For Karim, painting represents more than just a task in front of a canvas; it is a deliberate effort to create a connection between the work, the audience, the space, and the context.</p>
+                    
+                    <p>Since beginning his artistic journey in the Fine Arts Department at the Indonesian Institute of the Arts Yogyakarta in 2019, Karim has exhibited extensively in Indonesia and internationally, including in Japan, Korea, Taiwan, and the United Kingdom. He also co-founded the Tikum Forum collective in 2020. In 2023, he was selected as a finalist for UOB Painting of The Year, and in 2024, he held his debut solo exhibition, Butterflies In My Stomach, at Sewu Satu Gallery in Jakarta.</p>
                 </div>
-                
-                <div data-aos="fade-left">
-                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter mb-8 lowercase">ilham karim.</h1>
-                    <div class="space-y-6 text-gray-600 leading-relaxed text-justify">
-                        <p>
-                            Ilham Karim (born 1999, Jakarta; raised in Palembang) is an artist based in Yogyakarta. He focuses on painting, exploring the canvas through diverse forms and compositions. His work is influenced by digital culture and his multicultural family identity, presenting artistic exploration as a personal language to interpret the past, present and possible futures. 
-                        </p>
-                        <p>
-                            The bold use of colours, figures and materials in his work reflects contemporary aesthetics and ideas. For Karim, painting represents more than just a task in front of a canvas; it is a deliberate effort to create a connection between the work, the audience, the space, and the context.
-                        </p>
-                        <p>
-                            Since beginning his artistic journey in the Fine Arts Department at the Indonesian Institute of the Arts Yogyakarta in 2019, Karim has exhibited extensively in Indonesia and internationally, including in Japan, Korea, Taiwan, and the United Kingdom. He also co-founded the Tikum Forum collective in 2020. In 2023, he was selected as a finalist for UOB Painting of The Year, and in 2024, he held his debut solo exhibition, Butterflies In My Stomach, at Sewu Satu Gallery in Jakarta.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            </div>
+            <div class="profile-img">
+                <img src="https://lh3.googleusercontent.com/d/1Uc4Jt3SSin_bifmhpdy6BKh2LbVSY1Ja" alt="Ilham Karim">
+            </div>
         </div>
+
+        <!-- Bagian Bawah (Riwayat Hidup / CV) -->
+        <div class="cv-container">
+    <h2 class="cv-main-title">CV</h2>
+<p>&nbsp;&nbsp;&nbsp;</p>
+    <!-- Solo Exhibition -->
+    <div class="cv-section">
+        <h3 class="cv-category">Solo Exhibition</h3>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <div class="cv-row">
+            <div class="year">2025</div>
+            <ul class="items-list">
+                <li>Representasi Budaya Digital Dalam Seni Lukis, Fadjar Sidik Gallery, Indonesian Institute of the Arts Yogyakarta</li>
+            </ul>
+        </div>
+
+        <div class="cv-row">
+            <div class="year">2024</div>
+            <ul class="items-list">
+                <li>Butterflies In My Stomach, Sewu Satu Gallery, Jakarta, Indonesia</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Group Exhibition -->
+    <div class="cv-section">
+        <h3 class="cv-category">Group Exhibition</h3>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <div class="cv-row">
+            <div class="year">2026</div>
+            <ul class="items-list">
+                <li>Art Jakarta Garden, Ruang Dini Gallery, Hutan Kota by Plataran, Jakarta</li>
+            </ul>
+        </div>
+
+        <div class="cv-row">
+            <div class="year">2025</div>
+            <ul class="items-list">
+                <li>Of Motion and Motives, Ready Space Gallery, Yogyakarta, Indonesia</li>
+                <li>Quotidian Mythologies: Icons of the Now, Wangi Rupa Studio, Bandung, Indonesia</li>
+                <li>Art Jakarta, Future Kit Vol.2 by Ready Space Gallery Booth S27, JIExpo Kemayoran, Jakarta, Indonesia</li>
+                <li>S3buah Tak Cukup, B3rbuah..., Edsu House, Yogyakarta, Indonesia</li>
+                <li>KTFO #11 To Have a Blast!, Survive!Garage x Tikum Forum, Yogyakarta, Indonesia</li>
+                <li>ARTSUBS 2025: Material Ways, Surabaya, Indonesia</li>
+                <li>Art Taichung, Estyle Gallery Room 1111, Millennium Hotel Taichung, Taichung, Taiwan</li>
+                <li>9099 Group Exhibition, Indieart House, Yogyakarta, Indonesia</li>
+                <li>Salon ed Cetera, Ace House Collective, Yogyakarta, Indonesia</li>
+                <li>BUKA Art Exhibition, Sakato Art Space, Yogyakarta, Indonesia</li>
+                <li>Art Jakarta Garden, Ruang Dini Gallery, Hutan Kota by Plataran, Jakarta</li>
+                <li>#RealMe, Estyle Gallery, Taichung, Taiwan</li>
+                <li>The Next Waves, Yuan Gallery, Jakarta Art Hub 2, Jakarta</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2024</div>
+            <ul class="items-list">
+                <li>What Are You Creating In Jakarta, Jakarta Art Hub, Sewu Satu Gallery, Jakarta</li>
+                <li>All Hail Harry! Honoring Two Decades of Legacy: Harry Roesli 1951-2004, Lokananta Gallery, Surakarta, Solo, Indonesia</li>
+                <li>Wunderkammer: Space of Oddity, Tikum Forum, Fadjar Sidik Gallery, Yogyakarta, Indonesia</li>
+                <li>Focus Art Fair London, Sewu Satu, Saatchi Gallery, London, United Kingdom</li>
+                <li>Broken White Project Value, Ace House Collective, Art Jakarta, Jakarta, Indonesia</li>
+                <li>Art Jakarta, Sewu Satu, JIExpo Kemayoran, Jakarta</li>
+                <li>One Piece Club, Collectors’ Show 2nd, Gajah Gallery, Jakarta</li>
+                <li>ASYAAF, Artfair, LVS Gallery, Seoul, Korea Selatan</li>
+                <li>Open Room, Titik kumpul Forum, Yogyakarta</li>
+                <li>Salon ed Cetera, Ace House Collective, Yogyakarta, Indonesia</li>
+                <li>TaTar, Srisasanti Gallery, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>Setelah Perjumpaan, Langgeng Art Foundation, Yogyakarta, Indonesia</li>
+                <li>OMNI : The Alegory of Distance, Galeri Ruang Dini, Bandung, Indonesia</li>
+                <li>Re-af(l)eksi, Harust Studio, Getback Parlour, Jakarta, Indonesia</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2023</div>
+            <ul class="items-list">
+                <li>Broken White Project Value, Ace House Collective, Booth S6 (Hall B), ArtJakarta, Jakarta, Indonesia</li>
+                <li>Utopia, Artopologi, Queen City Mall, Semarang, Indonesia</li>
+                <li>13th UOB Painting of The Year, UOB Indonesia, Autograph Tower Level 77, Jakarta, Indonesia</li>
+                <li>Merajut Persatuan, Galeri Emira Soenasa, Taman Ismail Marzuki, Jakarta, Indonesia</li>
+                <li>Habitat Lokacarita, Nandur Srawung #10, Taman Budaya Yogyakarta, Yogyakarta, Indonesia</li>
+                <li>Keep The Fire On #9, Maafkan Seni Lahir dan Batin, SURVIVE!Garage,Yogyakarta, Indonesia</li>
+                <li>Motif: Lamaran, Artcare in Artjog, Jogja National Museum, Yogyakarta, Indonesia</li>
+                <li>[Se}tempat, Titik Kumpul Forum, Asana Bina Seni, Biennale Jogja, Taman Budaya Yogyakarta, Yogyakarta, Indonesia</li>
+                <li>Catharsis, Seketika Colective, Vinautism Gallery, Surabaya, Indonesia</li>
+                <li>Labirin, Healing dan Ruang Kremasi, Nawanata, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>In Between, Meramu, Di Tengah, Jakarta Selatan</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2022</div>
+            <ul class="items-list">
+                <li>Indo Festiverse NFT, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>Kabar Bumi Setengah Windu, Bentara Budaya, Yogyakarta, Indonesia</li>
+                <li>The 38th Dies Natalis, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>From This to This, Titik Kumpul Forum, JNM Bloc,Yogyakarta, Indonesia</li>
+                <li>TERUPA Festival, TAT Art Space, The Ambengan Tenten, Denpasar, Bali, Indonesia</li>
+                <li>Rise of Indonesian Artist, NFT Exhibition, Superlative Gallery, Bali, Indonesia</li>
+                <li>Living With Art, Shimin Gallery, Naha, Japan</li>
+                <li>Expanding Awareness, Artcare in Artjog, Jogja National Museum, Yogyakarta, Indonesia</li>
+                <li>Rekam Masa, Artopologi, Museum National Indonesia, DKI Jakarta, Yogyakarta, Indonesia</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2021</div>
+            <ul class="items-list">
+                <li>Seven Artist, JawirSpace, Yogyakarta, Indonesia</li>
+                <li>Pelabuhan Tanpa Dermaga, Titik Kumpul Forum, Sinambi Farm, Gunungkidul, Yogyakarta, Indonesia</li>
+                <li>Aksi Artsy #4, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>Saura Sadajiwa, Sangkring Art Space, Yogyakarta, Indonesia</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2020</div>
+            <ul class="items-list">
+                <li>Aksi Artsy #3, Galeri R.J. Katamsi, Yogyakarta, Indonesia</li>
+                <li>Binds and Infinity, Nalaroepa Gallery, Yogyakarta, Indonesia</li>
+                <li>What News, Online Exhibition, inform of Zines #1 - #7 on Instagram @nawanata19</li>
+                <li>Wake Up!, Gedung Dekanat Fakultas Seni Rupa, ISI Yogyakarta, Indonesia</li>
+                <li>Trending Topic, Archa Project Collective, Hangar Auto Garage, Yogyakarta, Indonesia</li>
+            </ul>
+        </div>
+        <div class="cv-row">
+            <div class="year">2019</div>
+            <ul class="items-list">
+                <li>Materikulasi Seni Murni Angkatan 2019, Galeri Fajar Sidik, ISI Yogyakarta, Indonesia</li>
+                <li>Nawanata Exhibition, Galeri Fajar Sidik, ISI Yogyakarta, Indonesia</li>
+                <li>Abinaya Teruni, TamanBudayaYogyakarta, Yogyakarta, Indonesia</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cv-section">
+        <h3 class="cv-category">Education</h3>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <div class="cv-row">
+            <div class="year">2025</div>
+            <ul class="items-list">
+                <li>Bachelor of Fine Arts in Faculty of Art and Design at Indonesia Institute of the Arts Yogyakartaa</li>
+            </ul>
+        </div>
+    </div>
+    <div class="cv-section">
+        <h3 class="cv-category">Award</h3>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <div class="cv-row">
+            <div class="year"></div>
+            <ul class="items-list">
+                <li>Finalist UOB Painting of The Year, 2023</li>
+                <li>PEKSIMIKAM Painting, Indonesia Institute of the Arts Yogyakarta, 2020</li>
+            </ul>
+        </div>
+    </div>
+    <div class="cv-section">
+        <h3 class="cv-category">Experience</h3>
+        <p>&nbsp;&nbsp;&nbsp;</p>
+        <div class="cv-row">
+            <div class="year"></div>
+            <ul class="items-list">
+                <li>Catalogue Shankay Vol.7 “Syntax Imaginary”, Artsy, 2025</li>
+                <li>Illustration Contributor for Kalam Dwimingguan edition 39, Salihara Community, 2025</li>
+                <li>Artistic Director of the Indies Economy Art Exhibition by Tikum Forum, 2025</li>
+                <li>Artistic Director of the exhibition “Labirin, Healing dan Ruang Kremasi” by Nawanata at the R.J. Katamsi Gallery, ISI Yogyakarta, 2023</li>
+                <li>Designers in the Aksi Artsy #5 exhibition at the R.J. Katamsi Gallery, ISI Yogyakarta, 2022</li>
+                <li>Judge for the Graphic of Surrealism (GOS) Painting Competition, Airlangga University, 2021</li>
+            </ul>
+        </div>
+    </div>
+</div>
     </main>
 
-    <!-- Footer -->
-    <footer class="p-10 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center bg-zinc-50">
-        <div class="text-[10px] text-gray-500 uppercase tracking-[0.2em] w-full md:w-1/3 text-center md:text-left text-lowercase">
-            (c) 2026 ilham karim <br> <span class="text-gray-300">powered by geri</span>
+    <footer>
+        <div class="footer-left">
+            <p>© 2026 Ilham Karim</p>
+            <p>Powered By Geri</p>
         </div>
-        <div class="w-full md:w-1/3 flex justify-center py-4 md:py-0">
-             <a href="https://instagram.com/namaku.karim" target="_blank">
-                <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+
+        <div class="footer-center">
+            <a href="https://instagram.com/namaku.karim" target="_blank">
+                <svg class="instagram-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.28-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
             </a>
         </div>
-        <div class="hidden md:block md:w-1/3 text-right"></div>
+
+        <div class="footer-right"></div>
     </footer>
 
     <script>
-        AOS.init({ duration: 1000, once: true });
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
     </script>
 </body>
 </html>
